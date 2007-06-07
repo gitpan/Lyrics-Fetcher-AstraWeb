@@ -1,0 +1,6 @@
+MANIFEST
+CHANGES
+Makefile.PL
+lib/Lyrics/Fetcher/AstraWeb.pm
+t/1.t
+META.yml                                 Module meta-data (added by MakeMaker)
