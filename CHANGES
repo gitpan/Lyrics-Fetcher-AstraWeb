@@ -1,12 +1,9 @@
 
 Changelog for Lyrics::Fetcher::AstraWeb
-$Id: CHANGES 140 2007-05-27 15:10:41Z davidp $
+$Id: CHANGES 245 2008-02-19 19:27:14Z davidp $
 
-Legend:
 
-[*] enhanced
-[+] added
-[-] fixed
+0.31  2008/02/19 - inprove package to improve its poor "Kwalitee" score
 
-0.3 - 07/06/2007 - Lyrics::Fetcher::AstraWeb split off from Lyrics::Fetcher to
+0.3 - 2007/07/06 - Lyrics::Fetcher::AstraWeb split off from Lyrics::Fetcher to
   become a package in its own right.

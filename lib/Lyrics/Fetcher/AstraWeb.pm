@@ -1,4 +1,5 @@
-#
+package Lyrics::Fetcher::AstraWeb;
+
 # AstraWeb - lyrics.astraweb.com implementation
 #
 # Copyright (C) 2003 Sir Reflog <reflog@mail15.com>
@@ -6,51 +7,38 @@
 #
 # Maintainership of Lyrics::Fetcher transferred in Feb 07 to BIGPRESH
 # (David Precious <davidp@preshweb.co.uk>)
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
 
-package Lyrics::Fetcher::AstraWeb;
+# $Id: AstraWeb.pm 251 2008-02-19 19:49:15Z davidp $
 
 use strict;
+use warnings;
 use WWW::Mechanize;
 use URI::URL;
 use vars qw($VERSION);
 
-$VERSION = '0.3';
+$VERSION = '0.31';
 
-sub fetch($$$){
+sub fetch {
     my($self,$artist, $title) = @_;
     my $agent = WWW::Mechanize->new();
     my($sartist) = join ("+", split(/ /, $artist));
     my($stitle) = join ("+", split(/ /, $title));
     $agent->get("http://search.lyrics.astraweb.com/?word=$sartist+$stitle");
-    #$agent->form(1) if $agent->forms and scalar @{$agent->forms};
+    
     if(grep { $_->text() =~ /$title/ }@{$agent->links}) {
         $agent->follow_link(text_regex => qr((?-xism:$title)));
+        
         if(grep { $_->text() =~ /Printable/ }@{$agent->links}) {
 		    $agent->follow_link(text_regex => qr((?-xism:Printable)));
-	}else{
-	    $Lyrics::Fetcher::Error = 'Bad page format';
-	    return;
-		
-	}
-    }else{
-    $Lyrics::Fetcher::Error = 'Cannot find such title';
-    return;
+        } else {
+            $Lyrics::Fetcher::Error = 'Bad page format';
+            return;
+        }
+    } else {
+        $Lyrics::Fetcher::Error = 'Cannot find such title';
+        return;
     }
+    
     return $agent->content =~  /<blockquote>(.*)<\/blockquote>/ && $1;
 }
 
@@ -66,7 +54,7 @@ Lyrics::Fetcher::AstraWeb - Get song lyrics from lyrics.astraweb.com
   print Lyrics::Fetcher->fetch("<artist>","<song>","AstraWeb");
 
   # or, if you want to use this module directly without Lyrics::Fetcher's
-  # involvement:
+  # involvement (be aware that using Lyrics::Fetcher is the recommended way):
   use Lyrics::Fetcher::AstraWeb;
   print Lyrics::Fetcher::AstraWeb->fetch('<artist>', '<song>');
 
@@ -74,7 +62,18 @@ Lyrics::Fetcher::AstraWeb - Get song lyrics from lyrics.astraweb.com
 =head1 DESCRIPTION
 
 This module tries to get song lyrics from lyrics.astraweb.com.  It's designed 
-to be called by Lyrics::Fetcher, but can be used directly if you'd prefer.
+to be called by Lyrics::Fetcher, and this is the recommended usage, but it can 
+be used directly if you'd prefer.
+
+=head1 INTERFACE
+
+=over 4
+
+=item fetch($artist, $title)
+
+Attempts to fetch lyrics.
+
+=back
 
 
 =head1 BUGS
@@ -82,7 +81,9 @@ to be called by Lyrics::Fetcher, but can be used directly if you'd prefer.
 Probably. If you find any bugs, please let me know.
 
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENCE
+
+Copyright (C) 2007 by David Precious
 
 This program is free software; you can redistribute it and/or modify it under 
 the same terms as Perl itself.
@@ -93,14 +94,7 @@ the same terms as Perl itself.
 David Precious E<lt>davidp@preshweb.co.ukE<gt>
 
 
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2007 by David Precious
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.7 or,
-at your option, any later version of Perl 5 you may have available.
+=head1 LEGAL DISCLAIMER
 
 Legal disclaimer: I have no connection with the owners of astraweb.com.
 Lyrics fetched by this script may be copyrighted by the authors, it's up to 
