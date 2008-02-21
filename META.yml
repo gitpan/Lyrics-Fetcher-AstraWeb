@@ -1,7 +1,7 @@
  --- #YAML:1.0
  name: Lyrics-Fetcher-AstraWeb
  abstract: Get song lyrics from lyrics.astraweb.com
- version: 0.31
+ version: 0.32
  author:
    - David Precious <davidp@preshweb.co.uk>
  license: perl

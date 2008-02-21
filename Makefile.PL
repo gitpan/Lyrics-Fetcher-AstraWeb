@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'Lyrics::Fetcher::AstraWeb',
     VERSION_FROM      => 'lib/Lyrics/Fetcher/AstraWeb.pm',
-    PREREQ_PM         => {  },
+    PREREQ_PM         => { WWW::Mechanize => 0 },
     NO_META           => 1,
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Lyrics/Fetcher/AstraWeb.pm',

@@ -8,15 +8,14 @@ package Lyrics::Fetcher::AstraWeb;
 # Maintainership of Lyrics::Fetcher transferred in Feb 07 to BIGPRESH
 # (David Precious <davidp@preshweb.co.uk>)
 
-# $Id: AstraWeb.pm 251 2008-02-19 19:49:15Z davidp $
+# $Id: AstraWeb.pm 267 2008-02-21 21:02:59Z davidp $
 
 use strict;
 use warnings;
 use WWW::Mechanize;
-use URI::URL;
 use vars qw($VERSION);
 
-$VERSION = '0.31';
+$VERSION = '0.32';
 
 sub fetch {
     my($self,$artist, $title) = @_;

@@ -1,8 +1,10 @@
 
 Changelog for Lyrics::Fetcher::AstraWeb
-$Id: CHANGES 245 2008-02-19 19:27:14Z davidp $
+$Id: CHANGES 267 2008-02-21 21:02:59Z davidp $
 
-
+0.32  2008/02/21 - I stupidly forgot to declare WWW::Mech as a dependency in
+  Makefile.PL, leading to test failures.
+  
 0.31  2008/02/19 - inprove package to improve its poor "Kwalitee" score
 
 0.3 - 2007/07/06 - Lyrics::Fetcher::AstraWeb split off from Lyrics::Fetcher to
