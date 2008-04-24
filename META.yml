@@ -1,17 +1,14 @@
- --- #YAML:1.0
- name: Lyrics-Fetcher-AstraWeb
- abstract: Get song lyrics from lyrics.astraweb.com
- version: 0.32
- author:
-   - David Precious <davidp@preshweb.co.uk>
- license: perl
- distribution_type: module
- requires:
-   WWW::Mechanize: 0
-   perl: 5.005
- build_requires:
-   Test::More: 0
- meta-spec:
-   version: 1.3
-   url: http://module-build.sourceforge.net/META-spec-v1.3.html
- generated_by: hand
+--- #YAML:1.0
+name:                Lyrics-Fetcher-AstraWeb
+version:             0.33
+abstract:            Get song lyrics from lyrics.astraweb.com
+license:             perl
+author:              
+    - David Precious <davidp@preshweb.co.uk>
+generated_by:        ExtUtils::MakeMaker version 6.44
+distribution_type:   module
+requires:     
+    WWW::Mechanize:                0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

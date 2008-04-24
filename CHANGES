@@ -1,7 +1,11 @@
 
 Changelog for Lyrics::Fetcher::AstraWeb
-$Id: CHANGES 267 2008-02-21 21:02:59Z davidp $
+$Id: CHANGES 333 2008-04-24 18:53:53Z davidp $
 
+0.33  2008/04/24 - use quotemeta before using $artist and $title in regexps,
+  so that we don't break if they contain meta characters - thanks go to
+  Joshua Soles (JBSOLES) for reporting this bug!
+  
 0.32  2008/02/21 - I stupidly forgot to declare WWW::Mech as a dependency in
   Makefile.PL, leading to test failures.
   

@@ -8,20 +8,25 @@ package Lyrics::Fetcher::AstraWeb;
 # Maintainership of Lyrics::Fetcher transferred in Feb 07 to BIGPRESH
 # (David Precious <davidp@preshweb.co.uk>)
 
-# $Id: AstraWeb.pm 267 2008-02-21 21:02:59Z davidp $
+# $Id: AstraWeb.pm 333 2008-04-24 18:53:53Z davidp $
 
 use strict;
 use warnings;
 use WWW::Mechanize;
 use vars qw($VERSION);
 
-$VERSION = '0.32';
+$VERSION = '0.33';
 
 sub fetch {
     my($self,$artist, $title) = @_;
     my $agent = WWW::Mechanize->new();
     my($sartist) = join ("+", split(/ /, $artist));
     my($stitle) = join ("+", split(/ /, $title));
+    
+    # quote regexp meta-characters to avoid breakage:
+    $title = quotemeta $title;
+    $artist = quotemeta $artist;
+    
     $agent->get("http://search.lyrics.astraweb.com/?word=$sartist+$stitle");
     
     if(grep { $_->text() =~ /$title/ }@{$agent->links}) {
